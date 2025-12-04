@@ -1,0 +1,32 @@
+sns.set(rc={'figure.figsize': (30, 5)})
+# Sets a very wide figure size to fit all product category labels
+
+ax = sns.countplot(data=df, x='Product_Category')
+# Creates a countplot showing how many orders belong to each product category
+
+for bars in ax.containers:
+    ax.bar_label(bars)
+    # Adds count labels on top of each bar
+    plt.show()
+    # Displays the countplot with labels
+
+
+sales_state = (
+    df.groupby(['Product_Category'], as_index=False)['Amount']
+      .sum()
+      .sort_values(by='Amount', ascending=False)
+      .head(10)
+)
+# Groups data by Product Category,
+# calculates total sales Amount,
+# sorts categories from highest to lowest spending,
+# and selects the top 10 categories based on sales amount
+
+sns.set(rc={'figure.figsize': (20, 5)})
+# Sets figure size for the next plot
+
+sns.barplot(data=sales_state, x='Product_Category', y='Amount')
+# Creates a barplot showing top 10 product categories by total sales amount
+
+plt.show()
+# Displays the bar chart
