@@ -1,0 +1,24 @@
+ax = sns.countplot(data=df, x='Marital_Status')
+# Creates a countplot showing how many customers are Married vs Not Married
+
+sns.set(rc={'figure.figsize': (2,5)})
+# Sets figure size for the chart
+
+for bars in ax.containers:
+    ax.bar_label(bars)
+    # Adds count labels on top of each bar
+
+plt.show()
+# Displays the labeled countplot
+
+
+sales_state = df.groupby(['Marital_Status', 'Gender'], as_index=False)['Amount'].sum().sort_values(by='Amount', ascending=False)
+# Groups data by Marital Status and Gender,
+# calculates total Amount spent,
+# and sorts results from highest to lowest spending
+
+sns.barplot(data=sales_state, x='Marital_Status', y='Amount', hue='Gender')
+# Creates a barplot comparing total spending 
+# between Married vs Unmarried customers, split by Gender
+plt.show()
+# Displays the bar chart
