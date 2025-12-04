@@ -1,0 +1,52 @@
+# import csv file
+df = pd.read_csv(r'C:\Users\ADMIN\Downloads\Python_Diwali_Sales_Analysis\Diwali Sales Data.csv', encoding= 'unicode_escape')
+
+df.shape
+# rows = 11251 and columns= 15
+
+df.head
+# showcases top and lower 5 values 
+# if u want more number of values write - ** df.head(number of values)
+
+df.info()
+# gives a summary of your DataFrame.
+# It tells you the structure of the dataset.
+
+df.drop(['Status' , 'unnamed1'], axis = 1 , inplace = True)
+
+#axis = 0 means entire row
+#axis = 1 means entire column
+
+#inplace = True (default) MEANS **changes the original dataframe directly (no need to assign back).
+#inplace = False MEANS **returns a new dataframe and df remains unchanged.
+
+pd.isnull(df)
+# values in columns are false MEANS there are some value (not null)
+
+pd.isnull(df).sum()
+#returns sum of null value
+
+df.dropna(inplace = True)
+
+pd.isnull(df).sum()
+#now no null values 
+
+df['Amount'] = df['Amount'].astype('int')
+# change data type
+# column name is always in []/SQUARE backet
+# astype for datatype change 
+
+df['Amount'].dtype
+# Returns Data type of column
+
+df.rename(columns = {'Marital_Status' : 'Married or not'})
+# how to rename column
+# its make any changes in DataFrame .....BECAUSE we haven't used inplace=True operator 
+
+df.describe()
+# describe() RETURNS description of data in dataframe (count , mean , median , mode , etc)
+
+df[['Age' , 'Orders' , 'Amount']].describe()
+# used to describe() specific columns  
+
+
