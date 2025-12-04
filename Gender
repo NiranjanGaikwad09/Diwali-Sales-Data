@@ -1,0 +1,38 @@
+ax = sns.countplot(x = 'Gender' , data = df)
+# Creates a countplot showing how many transactions are made by each gender
+
+
+plt.show()
+# Displays the plot
+
+
+ax = sns.countplot(x = 'Gender' , data = df)
+# Again plotting gender count to add labels on bars
+
+for bars in ax.containers:
+    ax.bar_label(bars)
+    # Adds the exact count number on top of each bar
+    plt.show(bars)
+    # Shows the updated plot with labels
+
+
+sales_gen = df.groupby('Gender')['Amount'].sum().reset_index()
+# Groups data by Gender and calculates the total sales Amount for each gender
+
+
+plt.bar(sales_gen['Gender'], sales_gen['Amount'])
+# Creates a simple bar chart of total sales by gender
+
+
+plt.xlabel("Gender")
+plt.ylabel("Total Amount")
+plt.title("Total Sales by Gender")
+plt.show()
+# Displays the sales bar chart
+
+
+sales_gen = df.groupby('Gender', as_index=False)['Amount'].sum().sort_values('Amount', ascending=False)
+# Again groups by Gender, sums the Amount, converts index to column, 
+# and sorts total Amount in descending order (highest spender first)
+sales_gen
+# Shows the final table of total sales by Gender
