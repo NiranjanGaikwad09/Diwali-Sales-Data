@@ -1,0 +1,24 @@
+sales_state = df.groupby(['Product_ID'], as_index=False)['Orders'].sum().sort_values(by='Orders', ascending=False).head(10)
+# Groups data by Product_ID,
+# sums the total number of Orders for each product,
+# sorts products from highest to lowest orders,
+# and selects the top 10 best-selling products
+
+sns.set(rc={'figure.figsize': (20, 5)})
+# Sets a wide figure size for readability
+
+sns.barplot(data=sales_state, x='Product_ID', y='Orders')
+# Creates a barplot showing top 10 products by number of orders
+plt.show()
+# Displays the bar chart
+
+
+fig1, ax1 = plt.subplots(figsize=(12, 7))
+# Creates a figure and axis for a custom bar chart
+
+df.groupby('Product_ID')['Orders'].sum().nlargest(10).sort_values(ascending=False).plot(kind='bar')
+# Another way to get top 10 ordered products:
+# Groups by Product_ID → sums Orders → selects top 10 → sorts → plots a bar chart
+
+plt.show()
+# Displays the bar chart
