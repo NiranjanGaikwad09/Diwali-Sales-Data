@@ -1,0 +1,27 @@
+sns.countplot(data = df , x = 'Age Group' , hue = 'Gender')
+# Creates a countplot showing number of customers in each Age Group,
+# separated by Gender using hue (male vs female comparison)
+plt.show()
+# Displays the chart
+
+
+ax = sns.countplot(data=df, x='Age Group', hue='Gender')
+# Replots the same chart to add labels on each bar
+
+for bars in ax.containers:
+    ax.bar_label(bars)
+    # Adds the numeric value on top of each bar
+
+plt.show()
+# Shows the updated countplot with labels
+
+
+sales_age = df.groupby(['Age Group'], as_index = False)['Amount'].sum().sort_values(by = 'Amount' , ascending = False)
+# Groups data by Age Group, calculates total purchase Amount,
+# and sorts age groups from highest to lowest sales
+
+
+sns.barplot(x = 'Age Group' , y = 'Amount' , data = sales_age)
+# Creates a barplot showing total sales amount for each age group
+plt.show()
+# Displays the bar chart
