@@ -1,0 +1,36 @@
+# total no of order by top 10 state
+
+sales_state = df.groupby(['State'], as_index=False)['Orders'].sum().sort_values(by='Orders', ascending=False).head(10)
+# Groups data by State, sums the total Orders,
+# sorts states from highest to lowest number of orders,
+# and selects the top 10 states
+
+sns.set(rc={'figure.figsize': (16,5)})
+# Sets the figure size for better readability
+
+sns.barplot(data=sales_state, x='State', y='Orders')
+# Creates a barplot showing top 10 states by number of orders
+plt.show()
+# Displays the bar chart
+
+
+
+# top 10 state as per 'Amount' spend 
+
+sales_state = df.groupby(['State'], as_index=False)['Amount'].sum().sort_values(by='Amount', ascending=False).head(10)
+# Groups data by State, sums total sales Amount,
+# sorts states from highest to lowest spending,
+# and selects the top 10 states
+
+
+sns.set(rc={'figure.figsize': (16,5)})
+# Sets figure size again for the next plot
+
+
+sns.barplot(data=sales_state, x='State', y='Amount')
+# Creates a barplot showing top 10 states by total spending
+plt.show()
+# Displays the bar chart
+
+
+
